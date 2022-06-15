@@ -11,6 +11,7 @@
                 <v-text-field
                   outlined
                   dense
+                  v-model="email"
                   label="Email address"
                   type="email"
                   prepend-icon="mdi-email"
@@ -19,6 +20,7 @@
                 <v-text-field
                   outlined
                   dense
+                  v-model="password"
                   label="Password"
                   :type="passwordVisible ? 'text' : 'password'"
                   prepend-icon="mdi-lock"
@@ -37,11 +39,22 @@
 </template>
 
 <script>
+import { useAuthStore } from "../store/authStore";
+
 export default {
   name: "Login",
   title: "Login",
+  setup() {
+    const authStore = useAuthStore();
+
+    return {
+      authStore,
+    };
+  },
   data() {
     return {
+      email: "",
+      password: "",
       passwordVisible: false,
     };
   },

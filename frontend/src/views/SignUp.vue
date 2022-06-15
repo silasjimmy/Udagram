@@ -11,6 +11,7 @@
                 <v-text-field
                   outlined
                   dense
+                  v-model="username"
                   label="Username"
                   type="text"
                   prepend-icon="mdi-account"
@@ -19,6 +20,7 @@
                 <v-text-field
                   outlined
                   dense
+                  v-model="email"
                   label="Email address"
                   type="email"
                   prepend-icon="mdi-email"
@@ -27,6 +29,7 @@
                 <v-text-field
                   outlined
                   dense
+                  v-model="password"
                   label="Password"
                   type="password"
                   prepend-icon="mdi-lock"
@@ -44,11 +47,23 @@
 </template>
 
 <script>
+import { useAuthStore } from "../store/authStore";
+
 export default {
   name: "SignUp",
   title: "Sign up",
+  setup() {
+    const authStore = useAuthStore();
+
+    return {
+      authStore,
+    };
+  },
   data() {
     return {
+      username: "",
+      email: "",
+      password: "",
       rules: {
         required: (i) => !!i || "This field is required!",
         validEmail: (i) => /.+@.+\..+/.test(i) || "Invalid email address!",
