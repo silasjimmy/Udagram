@@ -7,21 +7,24 @@
             <v-card-title class="justify-center">Login</v-card-title>
 
             <v-card-text>
-              <v-form>
+              <v-form ref="loginForm">
                 <v-text-field
                   outlined
                   dense
                   label="Email address"
                   type="email"
                   prepend-icon="mdi-email"
+                  :rules="[(i) => !!i || 'This field is required!']"
                 ></v-text-field>
                 <v-text-field
                   outlined
                   dense
                   label="Password"
-                  type="password"
+                  :type="passwordVisible ? 'text' : 'password'"
                   prepend-icon="mdi-lock"
-                  append-icon="mdi-eye-off"
+                  :append-icon="passwordVisible ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="passwordVisible = !passwordVisible"
+                  :rules="[(i) => !!i || 'This field is required!']"
                 ></v-text-field>
                 <v-btn block class="text-none" @click="login">Submit</v-btn>
               </v-form>
@@ -37,9 +40,16 @@
 export default {
   name: "Login",
   title: "Login",
+  data() {
+    return {
+      passwordVisible: false,
+    };
+  },
   methods: {
     login() {
-      console.log("Login!");
+      if (this.$refs.loginForm.validate()) {
+        console.log("Login!");
+      }
     },
   },
 };
