@@ -6,6 +6,7 @@
       <v-spacer></v-spacer>
 
       <v-btn link rounded text to="/login" class="text-none">Login</v-btn>
+      <v-btn link rounded text to="/sign-up" class="text-none">Sign up</v-btn>
     </v-app-bar>
 
     <v-main>
