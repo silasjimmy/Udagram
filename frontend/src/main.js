@@ -4,6 +4,9 @@ import router from './router'
 import { createPinia, PiniaVuePlugin } from 'pinia'
 import VueCompositionAPI from '@vue/composition-api'
 import vuetify from './plugins/vuetify'
+import titleMixin from './mixins/titleMixin'
+
+Vue.mixin(titleMixin)
 
 Vue.use(PiniaVuePlugin)
 const pinia = createPinia()
